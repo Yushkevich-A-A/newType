@@ -1,2 +1,3 @@
-const message='hello world';
-console.log('message')
+import './service/Cart';
+import './domain/Movie';
+import './domain/Buyable'
