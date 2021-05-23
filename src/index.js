@@ -1,0 +1,1 @@
+import './tsc/app';
