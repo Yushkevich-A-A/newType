@@ -1,0 +1,19 @@
+{
+  "name": "newtype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yushkevich-A-A/newType.git"
+  },
+  "author": "Yushkevich-A-A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yushkevich-A-A/newType/issues"
+  },
+  "homepage": "https://github.com/Yushkevich-A-A/newType#readme"
+}
