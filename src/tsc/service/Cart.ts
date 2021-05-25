@@ -1,21 +1,10 @@
 import Buyable from '../domain/Buyable';
-import Gadjet from '../domain/Gadjet';
 
 export default class Cart {
     private _items: Buyable[] = [];
 
     add(item: Buyable ): void {
-        if (item instanceof Gadjet) {
-            const itemIndex = this._items.find(currentItem => currentItem.id === item.id)
-            if (!itemIndex) {
-                this._items.push(item);
-            } else {
-                itemIndex.amount++ ;
-            }
-        } else {
-            this._items.push(item);
-        }
-
+        this._items.push(item); 
     }
 
     get items(): Buyable[] {
