@@ -13,7 +13,6 @@ export default class Cart {
         } else {
             this._items.push(item);  
         }
-
     }
 
     get items(): Buyable[] { 
