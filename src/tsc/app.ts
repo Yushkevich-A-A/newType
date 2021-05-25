@@ -1,6 +1,6 @@
-import Cart from './service/Cart';
-import Movie from './domain/Movie';
-import Book from './domain/Book';
-import MusicAlbum from './domain/MusicAlbum';
-import Gadjet from './domain/Gadjet';
+import './service/Cart';
+import './domain/Movie';
+import './domain/Book';
+import './domain/MusicAlbum';
+import './domain/Gadjet';
 

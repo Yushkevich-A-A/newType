@@ -5,10 +5,10 @@ export default class Cart {
     private _items: Buyable[] = [];
 
     add(item: Buyable ): void {
-        const checkExistItem = this._items.find(currentItem => currentItem.id === item.id);
-        if (checkExistItem) {
-            if ( checkExistItem instanceof Gadjet) {
-                checkExistItem.amount += 1;
+        // const checkExistItem = this._items.find(currentItem => currentItem.id === item.id);
+        if (this._items.find(currentItem => currentItem.id === item.id)) {
+            if ( this._items.find(currentItem => currentItem.id === item.id) instanceof Gadjet) {
+                this._items.find(currentItem => currentItem.id === item.id)!.amount += 1;
             }
         } else {
             this._items.push(item);  

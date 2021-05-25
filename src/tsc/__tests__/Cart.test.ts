@@ -28,7 +28,8 @@ test('add movie to cart', () => {
       'фэнтези',
       'приключения'
     ],
-    8220000
+    8220000, 
+    1
   )
 
   cart.add(movie);
@@ -39,8 +40,8 @@ test('add movie to cart', () => {
 test('calculation buy sum', () => {
   const cart = new Cart();
 
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
 
   cart.add(new Movie(
     2002,
@@ -57,7 +58,8 @@ test('calculation buy sum', () => {
       'фэнтези',
       'приключения'
     ],
-    8220000
+    8220000, 
+    1
   ));
 
   const buySum = 2000 + 900 + 200
@@ -69,8 +71,8 @@ test('calculation buy sum', () => {
 test('calculation buy sum with discount', () => {
   const cart = new Cart();
 
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
 
   cart.add(new Movie(
     2002,
@@ -87,7 +89,8 @@ test('calculation buy sum with discount', () => {
       'фэнтези',
       'приключения'
     ],
-    8220000
+    8220000, 
+    1
   ));
 
   const amountWithAFiftyPercentDiscount = (2000 + 900 + 200) / 2;
@@ -99,8 +102,8 @@ test('calculation buy sum with discount', () => {
 test('delete item from cart', () => {
   const cart = new Cart();
 
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
 
   cart.add(new Movie(
     2002,
@@ -117,7 +120,8 @@ test('delete item from cart', () => {
       'фэнтези',
       'приключения'
     ],
-    8220000
+    8220000, 
+    1
   ));
 
   expect(cart.items.length).toBe(3);
@@ -131,9 +135,9 @@ test('delete item from cart', () => {
 test('add 3 gadjets to cart( amount will be 3, cart length will be 1) ', () => {
   const cart = new Cart();
 
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
 
   expect(cart.items[0].amount).toBe(3);
   expect(cart.items.length).toBe(1);
@@ -142,12 +146,12 @@ test('add 3 gadjets to cart( amount will be 3, cart length will be 1) ', () => {
 test('add 3 movie and book (length cart will be 2, and each item will be amount 1)', () => {
   const cart = new Cart();
 
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, 1));
 
 
   expect(cart.items[0].amount).toBe(1);
@@ -158,22 +162,22 @@ test('add 3 movie and book (length cart will be 2, and each item will be amount 
 test('gadjet will not delete from cart while amount >= 1', () => {
   const cart = new Cart();
 
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
   cart.deleteItem(3333);
 
   expect(cart.items.length).toBe(1);
-  expect(cart.items[0]).toEqual(new Gadjet(3333, 'iphone4', 10000));
+  expect(cart.items[0]).toEqual(new Gadjet(3333, 'iphone4', 10000, 1));
 });
 
 test('gadjet will delete if amount == 0', () => {
   const cart = new Cart();
 
-  cart.add(new Gadjet(3333, 'iphone4', 10000));
+  cart.add(new Gadjet(3333, 'iphone4', 10000, 1));
   cart.deleteItem(3333);
 
   expect(cart.items.length).toBe(0);
-  expect(cart.items[0]).not.toEqual(new Gadjet(3333, 'iphone4', 10000));
+  expect(cart.items[0]).not.toEqual(new Gadjet(3333, 'iphone4', 10000, 1));
 });
 
 
