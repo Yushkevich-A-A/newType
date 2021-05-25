@@ -1,12 +1,11 @@
 import Buyable from './Buyable';
 
-export default class Book implements Buyable {
+export default class Gadjet implements Buyable {
     constructor(
         readonly id: number,
         readonly name: string,
-        readonly author: string,
         readonly price: number,
-        readonly pages: number,
-        readonly amount: number = 1
     ) { }
+  amount: number = 1;
+  
 }
