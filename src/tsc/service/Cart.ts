@@ -5,25 +5,23 @@ export default class Cart {
     private _items: Buyable[] = [];
 
     add(item: Buyable ): void {
-        if (item instanceof Gadjet) {
-            const itemIndex = this._items.find(currentItem => currentItem.id === item.id)
-            if (!itemIndex) {
-                this._items.push(item);
-            } else {
-                itemIndex.amount++ ;
+        const checkExistItem = this._items.find(currentItem => currentItem.id === item.id);
+        if (checkExistItem) {
+            if ( checkExistItem instanceof Gadjet) {
+                checkExistItem.amount += 1;
             }
         } else {
-            this._items.push(item);
+            this._items.push(item);  
         }
 
     }
 
-    get items(): Buyable[] {
+    get items(): Buyable[] { 
         return [...this._items]; 
     }
 
     sum(): number  {
-        return this._items.reduce((acc: number, sum) => acc + sum.price, 0);
+        return this._items.reduce((acc: number, sum) => acc + sum.price * sum.amount, 0);
     }
 
     discountSum(value: number): number  {
@@ -31,6 +29,14 @@ export default class Cart {
     }
 
     deleteItem (id: number): void {
-        this._items.splice(this._items.findIndex((item: Buyable) => item.id === id), 1);
+        const delItemIndex = this._items.findIndex((item: Buyable) => item.id === id);
+        const delItem = this._items[delItemIndex];
+        if (delItem instanceof Gadjet && delItem.amount > 1) {
+            delItem.amount -= 1;
+        } else {
+            this._items.splice(delItemIndex, 1);            
+        }
+
+
     }
 }
