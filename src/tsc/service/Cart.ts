@@ -1,14 +1,13 @@
 import Buyable from '../domain/Buyable';
-import Gadjet from '../domain/Gadjet';
 
 export default class Cart {
     private _items: Buyable[] = [];
 
     add(item: Buyable ): void {
-        // const checkExistItem = this._items.find(currentItem => currentItem.id === item.id);
-        if (this._items.find(currentItem => currentItem.id === item.id)) {
-            if ( this._items.find(currentItem => currentItem.id === item.id) instanceof Gadjet) {
-                this._items.find(currentItem => currentItem.id === item.id)!.amount += 1;
+        const checkExistItem = this._items.find(currentItem => currentItem.id === item.id);
+        if (checkExistItem) {
+            if (checkExistItem.countable) {
+                checkExistItem.amount += 1;
             }
         } else {
             this._items.push(item);  
@@ -30,7 +29,7 @@ export default class Cart {
     deleteItem (id: number): void {
         const delItemIndex = this._items.findIndex((item: Buyable) => item.id === id);
         const delItem = this._items[delItemIndex];
-        if (delItem instanceof Gadjet && delItem.amount > 1) {
+        if (delItem.countable && delItem.amount > 1) {
             delItem.amount -= 1;
         } else {
             this._items.splice(delItemIndex, 1);            

@@ -3,4 +3,5 @@ export default interface Buyable {
   readonly name: string,
   readonly price: number,
   amount: number,
+  readonly countable: boolean,
 }
